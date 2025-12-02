@@ -65,50 +65,50 @@ api.interceptors.response.use(
 
 // Track APIs
 export const trackAPI = {
-    getAll: (params) => api.get('/api/v1/tracks', { params }),
-    getById: (id) => api.get(`/api/v1/tracks/${id}`),
-    search: (query, params) => api.get('/api/v1/tracks/search', { params: { q: query, ...params } }),
-    initiateUpload: (data) => api.post('/api/v1/tracks/upload/initiate', data),
-    finalizeUpload: (data) => api.post('/api/v1/tracks/upload/finalize', data),
+    getAll: (params) => api.get('/api/v1/tracks/', { params }),
+    getById: (id) => api.get(`/api/v1/tracks/${id}`), // ID usually doesn't need slash, but depends on backend. Leaving as is for now or adding? Let's add to be safe if it's a resource collection style. Actually /tracks/{id} usually doesn't enforce slash. But /tracks does.
+    search: (query, params) => api.get('/api/v1/tracks/search/', { params: { q: query, ...params } }),
+    initiateUpload: (data) => api.post('/api/v1/tracks/upload/initiate/', data),
+    finalizeUpload: (data) => api.post('/api/v1/tracks/upload/finalize/', data),
     update: (id, data) => api.patch(`/api/v1/tracks/${id}`, data),
-    stream: (id) => `${API_BASE_URL}/api/v1/tracks/${id}/stream`,
+    stream: (id) => `${API_BASE_URL}/api/v1/tracks/${id}/stream/`,
 };
 
 // User APIs
 export const userAPI = {
-    me: () => api.get('/api/v1/users/me'),
-    updateProfile: (data) => api.patch('/api/v1/users/me', data),
+    me: () => api.get('/api/v1/users/me/'),
+    updateProfile: (data) => api.patch('/api/v1/users/me/', data),
 };
 
 // Like APIs
 export const likeAPI = {
-    toggle: (trackId) => api.post('/api/v1/likes', { track_id: trackId }),
-    getByTrack: (trackId) => api.get(`/api/v1/likes/track/${trackId}`),
+    toggle: (trackId) => api.post('/api/v1/likes/', { track_id: trackId }),
+    getByTrack: (trackId) => api.get(`/api/v1/likes/track/${trackId}/`),
 };
 
 // Comment APIs
 export const commentAPI = {
-    create: (data) => api.post('/api/v1/comments', data),
-    getByTrack: (trackId) => api.get(`/api/v1/comments/track/${trackId}`),
+    create: (data) => api.post('/api/v1/comments/', data),
+    getByTrack: (trackId) => api.get(`/api/v1/comments/track/${trackId}/`),
     delete: (id) => api.delete(`/api/v1/comments/${id}`),
 };
 
 // Follow APIs
 export const followAPI = {
-    toggle: (userId) => api.post('/api/v1/follows', { followed_user_id: userId }),
-    getFollowers: (userId) => api.get(`/api/v1/follows/${userId}/followers`),
-    getFollowing: (userId) => api.get(`/api/v1/follows/${userId}/following`),
+    toggle: (userId) => api.post('/api/v1/follows/', { followed_user_id: userId }),
+    getFollowers: (userId) => api.get(`/api/v1/follows/${userId}/followers/`),
+    getFollowing: (userId) => api.get(`/api/v1/follows/${userId}/following/`),
 };
 
 // Playlist APIs
 export const playlistAPI = {
-    getAll: () => api.get('/api/v1/playlists'),
+    getAll: () => api.get('/api/v1/playlists/'),
     getById: (id) => api.get(`/api/v1/playlists/${id}`),
-    create: (data) => api.post('/api/v1/playlists', data),
+    create: (data) => api.post('/api/v1/playlists/', data),
     update: (id, data) => api.patch(`/api/v1/playlists/${id}`, data),
     delete: (id) => api.delete(`/api/v1/playlists/${id}`),
-    addTrack: (id, trackId) => api.post(`/api/v1/playlists/${id}/tracks/${trackId}`),
-    removeTrack: (id, trackId) => api.delete(`/api/v1/playlists/${id}/tracks/${trackId}`),
+    addTrack: (id, trackId) => api.post(`/api/v1/playlists/${id}/tracks/${trackId}/`),
+    removeTrack: (id, trackId) => api.delete(`/api/v1/playlists/${id}/tracks/${trackId}/`),
 };
 
 export default api;
