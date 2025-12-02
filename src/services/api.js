@@ -8,7 +8,7 @@ import axios from 'axios';
 // const API_BASE_URL = 'http://15.165.200.236:8000';
 
 //vercel 에서 http 백엔드로 바꿔야함
-const API_BASE_URL = '/api';
+const API_BASE_URL = ''; // Vercel Proxy will handle this
 console.log('API_BASE_URL:', API_BASE_URL);
 
 const api = axios.create({
@@ -21,7 +21,7 @@ const api = axios.create({
 
 
 // 아래처럼 하면 vercel에서 https -> 백엔드 http로 바뀌면서 문제가 발생
-// const API_BASE_URL = 'http://3.35.45.78:8000';
+// const API_BASE_URL = ''; // Vercel Proxy will handle this
 // console.log('API_BASE_URL:', API_BASE_URL);
 
 // const api = axios.create({
