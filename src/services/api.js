@@ -6,7 +6,9 @@ import axios from 'axios';
 // const API_BASE_URL = 'http://15.165.200.236:8000/api/v1';
 // 아래있는걸로 변경이 되어야 배포되고 문제가 확인이 가능
 // const API_BASE_URL = 'http://15.165.200.236:8000';
-const API_BASE_URL = 'http://3.35.45.78:8000';
+
+//vercel 에서 http 백엔드로 바꿔야함
+const API_BASE_URL = '/api';
 console.log('API_BASE_URL:', API_BASE_URL);
 
 const api = axios.create({
@@ -15,6 +17,19 @@ const api = axios.create({
         'Content-Type': 'application/json',
     },
 });
+
+
+
+// 아래처럼 하면 vercel에서 https -> 백엔드 http로 바뀌면서 문제가 발생
+// const API_BASE_URL = 'http://3.35.45.78:8000';
+// console.log('API_BASE_URL:', API_BASE_URL);
+
+// const api = axios.create({
+//     baseURL: API_BASE_URL,
+//     headers: {
+//         'Content-Type': 'application/json',
+//     },
+// });
 
 // Request interceptor for adding auth token
 api.interceptors.request.use(
